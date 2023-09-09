@@ -1143,6 +1143,71 @@ static char * physNames_CM4[64] =
 	"     GND", "GPIO3_D1",
 };
 
+
+static char *physNames_LBC_2[64] =
+{
+  NULL,
+  "    3.3V", "5V      ",
+  " I2C_SDA", "5V      ",
+  " I2C_SCL", "GND     ",
+  "    GPIO", "UART_TX ",
+  "     GND", "UART_RX ",
+  "    GPIO", "PWM     ",
+  "    GPIO", "GND     ",
+  "    GPIO", "GPIO    ",
+  "    3.3V", "GPIO    ",
+  "SPI_MOSI", "GND     ",
+  "SPI_MISO", "GPIO    ",
+  " SPI_CLK", "SPI_CSI0",
+  "     GND", "SPI_CSI1",
+  "I2C5_SDA", "I2C5_SCL",
+  "    GPIO", "GND     ",
+  "    GPIO", "PWM     ",
+  "     PWM", "GND     ",
+  "     PWM", "GPIO    ",
+  "    GPIO", "GPIO    ",
+  "     GND", "GPIO    ",
+       NULL, NULL,
+       NULL, NULL,
+       NULL, NULL,
+       NULL, NULL,
+       NULL, NULL,
+  	   NULL, NULL,
+       NULL, NULL,
+       NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,
+};
+
+int physToWpi_LBC_2[64] = //return wiringPI pin
+{
+	-1,       // 0
+	-1, -1,   // 1, 2
+	0, -1,   // 3, 4
+	1, -1,   // 5, 6
+	2, 3,   // 7, 8
+	-1, 4,   // 9, 10
+	5, 6,   // 11, 12
+	7, -1,   // 13, 14
+	8, 9,   // 15, 16
+	-1, 10,   // 17, 18
+	11, -1,   // 19, 20
+	12, 13,   // 21, 22
+	14, 15,   // 23, 24
+	-1, 16,   // 25, 26
+ 	17, 18,   // 27, 28
+	19, -1,   // 29, 30
+	20, 21,   // 31, 32
+	22, -1,   // 33, 34
+	23, 24,   // 35, 36
+	25, 26,   // 37, 38
+	-1, 27,   // 39, 40
+	// Padding:
+
+	-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,	// ... 56
+	-1, -1, -1, -1, -1, -1, -1,	// ... 63
+
+};
+
+
 static int * physToWpi;
 static char ** physNames;
 
@@ -1470,6 +1535,12 @@ void OrangePiReadAll(int model)
 			physNames =  physNames_CM4;
 			alts = alts_rk3588;
 			break;
+		case PI_MODEL_LBC2:
+			printf (" +------+-----+----------+--------+---+   LBC2   +---+--------+----------+-----+------+\n");
+			physToWpi =  physToWpi_LBC_2;
+			physNames =  physNames_LBC_2;
+			alts = alts_rk3588;
+			break;
 
 		default:
 			printf ("Oops - unable to determine board type... model: %d\n", model);
@@ -1491,6 +1562,7 @@ void OrangePiReadAll(int model)
 		case PI_MODEL_900:
 		case PI_MODEL_CM4:
 		case PI_MODEL_3B:
+		case PI_MODEL_LBC2:
 		case PI_MODEL_ZERO_2_W:
 			for (pin = 1 ; pin <= 40; pin += 2)
 				readallPhys(pin);
@@ -1590,6 +1662,9 @@ void OrangePiReadAll(int model)
 			break;
 		case PI_MODEL_3B:
 			printf (" +------+-----+----------+--------+---+   PI3B   +---+--------+----------+-----+------+\n");
+			break;
+		case PI_MODEL_LBC2:
+			printf (" +------+-----+----------+--------+---+   LBC2   +---+--------+----------+-----+------+\n");
 			break;
 		default:
 			printf ("Oops - unable to determine board type... model: %d\n", model);

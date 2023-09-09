@@ -316,6 +316,15 @@ static int ORANGEPI_PIN_MASK_CM4[5][32] =  //[BANK]	[INDEX]
 	{ 0, 1, 2, 3, 4, 5, 6, 7,  0,-1, 2, 3, 4, 5,-1,-1,  0,-1,-1, 3,-1,-1,-1,-1, -1,-1,-1,-1,-1,-1,-1,-1,},//GPIO4
 };
 
+static int ORANGEPI_PIN_MASK_LBC_2[5][32] =  //[BANK]	[INDEX]
+{
+	{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,},//GPIO0
+	{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,},//GPIO1
+	{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,},//GPIO2
+	{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,},//GPIO3
+	{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,},//GPIO4
+};
+
 
 static int ORANGEPI_PIN_MASK_R1_PLUS[5][32] =  //[BANK]	[INDEX]
 {
@@ -956,6 +965,34 @@ int pinToGpio_CM4[64] =
 	-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,// ... 63
 };
 
+int pinToGpio_LBC_2[64] =
+{
+	32,  33,      // 0, 1
+	8, 111,      // 2, 3
+	112, 101,      // 4  5
+	105,  102,      // 6, 7
+	103,  95,      // 8, 9
+	96,  147,      //10,11
+	
+	149,  18,      //12,13
+	
+	146,  150,      //14,15
+	148, 108,      //16,17
+	107,  154,      //18,19
+	110,  106,      //20,21
+	109,  116,      //22,23
+	40,  117,      //24,25
+
+	
+	41,  42,      //26,27
+	
+	-1,  -1,    //28,29
+	-1,   -1,    //30,31
+
+	-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, // ... 47
+	-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,// ... 63	
+};
+
 int pinToGpio_R1_PLUS[64] =
 {
 	89,  88,      // 0, 1
@@ -1549,6 +1586,35 @@ int physToGpio_CM4[64] =
 	-1, -1, -1, -1, -1, -1, -1,   // ... 63
 };
 
+int physToGpio_LBC_2[64] =//head num map to OrangePi
+{
+	-1,       // 0
+	-1, -1,   // 1, 2
+	32, -1,   // 3, 4
+	33, -1,   // 5, 6
+	8, 111,   // 7, 8
+	-1, 112,   // 9, 10
+	101, 105,   // 11, 12
+	102, -1,   // 13, 14
+	103, 95,   // 15, 16
+	-1, 96,   // 17, 18
+	147, -1,   // 19, 20
+	149, 18,   // 21, 22
+	146, 150,   // 23, 24
+	-1, 148,   // 25, 26
+ 	108, 107,   // 27, 28
+	154, -1,   // 29, 30
+	110, 106,   // 31, 32
+	109, -1,   // 33, 34
+	116, 40,   // 35, 36
+	117, 41,   // 37, 38
+	-1, 42,   // 39, 40
+// Padding:
+  -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,   // ... 56
+  -1, -1, -1, -1, -1, -1, -1,   // ... 63
+};
+
+
 int physToGpio_R1_PLUS[64] =//head num map to OrangePi
 {
 	-1,       // 0
@@ -1948,6 +2014,7 @@ void piBoardId (int * model)
 	else if (strncmp(revision, "orangepi900.",     	   	   12) == 0) { *model = PI_MODEL_900; }
 	else if (strncmp(revision, "orangepicm4.",                 12) == 0) { *model = PI_MODEL_CM4; }
 	else if (strncmp(revision, "orangepi3b.",                  11) == 0) { *model = PI_MODEL_3B; }
+	else if (strncmp(revision, "lubancat2.",                  10) == 0) { *model = PI_MODEL_LBC2; }
 
 	if (wiringPiDebug)
 		printf("piBoardId: model = %d\n", *model);
@@ -3195,6 +3262,11 @@ int wiringPiSetup (void)
 			physToGpio = physToGpio_CM4;
 			ORANGEPI_PIN_MASK = ORANGEPI_PIN_MASK_CM4;
 			break;
+		case PI_MODEL_LBC2:
+			pinToGpio =  pinToGpio_LBC_2;
+			physToGpio = physToGpio_LBC_2;
+			ORANGEPI_PIN_MASK = ORANGEPI_PIN_MASK_LBC_2;
+		break;
 		default:
 			printf ("Oops - unable to determine board type... model: %d\n", OrangePiModel);
 			break ;
@@ -3347,6 +3419,7 @@ int wiringPiSetup (void)
 
 		case PI_MODEL_CM4:
 		case PI_MODEL_3B:
+		case PI_MODEL_LBC2:
 
 			/* GPIO Register */
 			rk3566_soc_info_t.gpio0_base = (uint32_t *)mmap(0, BLOCK_SIZE, PROT_READ|PROT_WRITE, MAP_SHARED, fd, RK3566_GPIO0_BASE);
@@ -3653,6 +3726,7 @@ unsigned int readR(unsigned int addr)
 
 		case PI_MODEL_CM4:
 		case PI_MODEL_3B:
+		case PI_MODEL_LBC2:
 
 			val = 0;
 
@@ -3786,6 +3860,7 @@ void writeR(unsigned int val, unsigned int addr)
 
 		case PI_MODEL_CM4:
 		case PI_MODEL_3B:
+		case PI_MODEL_LBC2:
 
 			mmap_base = (addr & (~0xfff));
 			mmap_seek = (addr - mmap_base);
@@ -3970,6 +4045,7 @@ int OrangePi_get_gpio_mode(int pin)
 
 		case PI_MODEL_CM4:
 		case PI_MODEL_3B:
+		case PI_MODEL_LBC2:
 
 			if(bank == 0){
 				grf_phyaddr = RK3566_PMU_GRF_BASE + RK3566_PMU_GRF_GPIO0A_IOMUX_L_OFFSET + ((pin >> 2) << 2);
@@ -3985,9 +4061,10 @@ int OrangePi_get_gpio_mode(int pin)
 			if (ORANGEPI_PIN_MASK[bank][index] != -1) {
 				regval = readR(grf_phyaddr);
 				mode = (regval >> offset) & 0x7;
-
+				// printf("\ngrf_phyaddr = 0x%x ,regval = 0x%x\n",grf_phyaddr,regval);
 				if(mode == 0){ //如果是gpio模式
 					regval = readR(ddr_phyaddr);//获取gpio方向寄存器的值
+					// printf("ddr_phyaddr = 0x%x ,regval = 0x%x\n",ddr_phyaddr,regval);
 					return (regval >> (index % 16)) & 0x1;//index对应的gpio的方向值，0为in，1为out
 				}
 				return mode + 1;//如果不是gpio模式，返回的alt，从2开始，0和1是in和out
@@ -4312,6 +4389,7 @@ int OrangePi_set_gpio_mode(int pin, int mode)
 
 		case PI_MODEL_CM4:
 		case PI_MODEL_3B:
+		case PI_MODEL_LBC2:
 			if(bank == 0){
 				cru_phyaddr = RK3566_PMU_CRU_BASE + RK3566_PMUCRU_PMUGATE_CON01_OFFSET;
 				cru_val = ~((0x3 << 9) | (0x3 << (16 + 9)));
@@ -4638,6 +4716,7 @@ int OrangePi_digitalWrite(int pin, int value)
 
 		case PI_MODEL_CM4:
 		case PI_MODEL_3B:
+		case PI_MODEL_LBC2:
 
 			if(bank == 0){
 				dr_phyaddr = RK3566_GPIO0_BASE + RK3566_GPIO_SWPORT_DR_L_OFFSET + ((index >> 4) << 2);
@@ -4785,6 +4864,7 @@ int OrangePi_digitalRead(int pin)
 
 		case PI_MODEL_CM4:
 		case PI_MODEL_3B:
+		case PI_MODEL_LBC2:
 
 			if(bank == 0)
 				phyaddr = RK3566_GPIO0_BASE + RK3566_GPIO_EXT_PORT_OFFSET;
@@ -4897,6 +4977,7 @@ void OrangePi_set_gpio_pullUpDnControl (int pin, int pud)
 
 		case PI_MODEL_CM4:
 		case PI_MODEL_3B:
+		case PI_MODEL_LBC2:
 
 			if (bank == 0)
 				phyaddr = RK3566_PMU_GRF_BASE + RK3566_PMU_GRF_GPIO0A_P_OFFSET  + (((pin - 0) >> 3) << 2);
