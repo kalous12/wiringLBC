@@ -1144,7 +1144,7 @@ static char * physNames_CM4[64] =
 };
 
 
-static char *physNames_LBC_2[64] =
+static char *physNames_LBC[64] =
 {
   NULL,
   "    3.3V", "5V      ",
@@ -1177,7 +1177,7 @@ static char *physNames_LBC_2[64] =
        NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,
 };
 
-int physToWpi_LBC_2[64] = //return wiringPI pin
+int physToWpi_LBC[64] = //return wiringPI pin
 {
 	-1,       // 0
 	-1, -1,   // 1, 2
@@ -1535,10 +1535,40 @@ void OrangePiReadAll(int model)
 			physNames =  physNames_CM4;
 			alts = alts_rk3588;
 			break;
-		case PI_MODEL_LBC2:
-			printf (" +------+-----+----------+--------+---+   LBC2   +---+--------+----------+-----+------+\n");
-			physToWpi =  physToWpi_LBC_2;
-			physNames =  physNames_LBC_2;
+		case PI_MODEL_LBC_ZW:
+			printf (" +------+-----+----------+--------+---+  LBC-ZW  +---+--------+----------+-----+------+\n");
+			physToWpi =  physToWpi_LBC;
+			physNames =  physNames_LBC;
+			alts = alts_rk3588;
+			break;
+		case PI_MODEL_LBC_ZN:
+			printf (" +------+-----+----------+--------+---+  LBC-ZN  +---+--------+----------+-----+------+\n");
+			physToWpi =  physToWpi_LBC;
+			physNames =  physNames_LBC;
+			alts = alts_rk3588;
+			break;
+		case PI_MODEL_LBC_1:
+			printf (" +------+-----+----------+--------+---+   LBC-1  +---+--------+----------+-----+------+\n");
+			physToWpi =  physToWpi_LBC;
+			physNames =  physNames_LBC;
+			alts = alts_rk3588;
+			break;
+		case PI_MODEL_LBC_1N:
+			printf (" +------+-----+----------+--------+---+  LBC-1N  +---+--------+----------+-----+------+\n");
+			physToWpi =  physToWpi_LBC;
+			physNames =  physNames_LBC;
+			alts = alts_rk3588;
+			break;
+		case PI_MODEL_LBC_2:
+			printf (" +------+-----+----------+--------+---+   LBC-2  +---+--------+----------+-----+------+\n");
+			physToWpi =  physToWpi_LBC;
+			physNames =  physNames_LBC;
+			alts = alts_rk3588;
+			break;
+		case PI_MODEL_LBC_2N:
+			printf (" +------+-----+----------+--------+---+  LBC-2N  +---+--------+----------+-----+------+\n");
+			physToWpi =  physToWpi_LBC;
+			physNames =  physNames_LBC;
 			alts = alts_rk3588;
 			break;
 
@@ -1562,7 +1592,12 @@ void OrangePiReadAll(int model)
 		case PI_MODEL_900:
 		case PI_MODEL_CM4:
 		case PI_MODEL_3B:
-		case PI_MODEL_LBC2:
+		case PI_MODEL_LBC_ZW:
+		case PI_MODEL_LBC_ZN:
+		case PI_MODEL_LBC_1:
+		case PI_MODEL_LBC_1N:
+		case PI_MODEL_LBC_2:
+		case PI_MODEL_LBC_2N:
 		case PI_MODEL_ZERO_2_W:
 			for (pin = 1 ; pin <= 40; pin += 2)
 				readallPhys(pin);
@@ -1663,9 +1698,25 @@ void OrangePiReadAll(int model)
 		case PI_MODEL_3B:
 			printf (" +------+-----+----------+--------+---+   PI3B   +---+--------+----------+-----+------+\n");
 			break;
-		case PI_MODEL_LBC2:
-			printf (" +------+-----+----------+--------+---+   LBC2   +---+--------+----------+-----+------+\n");
+		case PI_MODEL_LBC_ZW:
+			printf (" +------+-----+----------+--------+---+  LBC-ZW  +---+--------+----------+-----+------+\n");
 			break;
+		case PI_MODEL_LBC_ZN:
+			printf (" +------+-----+----------+--------+---+  LBC-ZN  +---+--------+----------+-----+------+\n");
+			break;
+		case PI_MODEL_LBC_1:
+			printf (" +------+-----+----------+--------+---+   LBC-1  +---+--------+----------+-----+------+\n");
+			break;
+		case PI_MODEL_LBC_1N:
+			printf (" +------+-----+----------+--------+---+  LBC-1N  +---+--------+----------+-----+------+\n");
+			break;
+		case PI_MODEL_LBC_2:
+			printf (" +------+-----+----------+--------+---+   LBC-2  +---+--------+----------+-----+------+\n");
+			break;
+		case PI_MODEL_LBC_2N:
+			printf (" +------+-----+----------+--------+---+  LBC-2N  +---+--------+----------+-----+------+\n");
+			break;
+
 		default:
 			printf ("Oops - unable to determine board type... model: %d\n", model);
 			break ;

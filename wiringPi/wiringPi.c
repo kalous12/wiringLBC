@@ -316,7 +316,7 @@ static int ORANGEPI_PIN_MASK_CM4[5][32] =  //[BANK]	[INDEX]
 	{ 0, 1, 2, 3, 4, 5, 6, 7,  0,-1, 2, 3, 4, 5,-1,-1,  0,-1,-1, 3,-1,-1,-1,-1, -1,-1,-1,-1,-1,-1,-1,-1,},//GPIO4
 };
 
-static int ORANGEPI_PIN_MASK_LBC_2[5][32] =  //[BANK]	[INDEX]
+static int ORANGEPI_PIN_MASK_LBC[5][32] =  //[BANK]	[INDEX]
 {
 	{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,},//GPIO0
 	{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,},//GPIO1
@@ -965,6 +965,62 @@ int pinToGpio_CM4[64] =
 	-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,// ... 63
 };
 
+int pinToGpio_LBC_Z[64] =
+{
+	32,  33,      // 0, 1
+	34, 85,      // 2, 3
+	86, 35,      // 4  5
+	18,  36,      // 6, 7
+	37,  83,      // 8, 9
+	84,  147,      //10,11
+	
+	149,  42,      //12,13
+	
+	146,  150,      //14,15
+	43, 108,      //16,17
+	107,  39,      //18,19
+	40,  110,      //20,21
+	105,  106,      //22,23
+	101,  41,      //24,25
+
+	
+	102,  103,      //26,27
+	
+	-1,  -1,    //28,29
+	-1,   -1,    //30,31
+
+	-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, // ... 47
+	-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,// ... 63	
+};
+
+int pinToGpio_LBC_1[64] =
+{
+	32,  33,      // 0, 1
+	36, 111,      // 2, 3
+	112, 101,      // 4  5
+	105,  102,      // 6, 7
+	103,  114,      // 8, 9
+	115,  147,      //10,11
+	
+	149,  104,      //12,13
+	
+	146,  150,      //14,15
+	148, 108,      //16,17
+	107,  113,      //18,19
+	110,  106,      //20,21
+	109,  116,      //22,23
+	40,  117,      //24,25
+
+	
+	41,  42,      //26,27
+	
+	-1,  -1,    //28,29
+	-1,   -1,    //30,31
+
+	-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, // ... 47
+	-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,// ... 63	
+};
+
 int pinToGpio_LBC_2[64] =
 {
 	32,  33,      // 0, 1
@@ -992,6 +1048,63 @@ int pinToGpio_LBC_2[64] =
 	-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, // ... 47
 	-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,// ... 63	
 };
+
+int pinToGpio_LBC_2V[64] =
+{
+	32,  33,      // 0, 1
+	8, 111,      // 2, 3
+	112, 101,      // 4  5
+	105,  102,      // 6, 7
+	103,  95,      // 8, 9
+	96,  147,      //10,11
+	
+	149,  22,      //12,13
+	
+	146,  150,      //14,15
+	148, 108,      //16,17
+	107,  154,      //18,19
+	110,  106,      //20,21
+	109,  116,      //22,23
+	40,  117,      //24,25
+
+	
+	41,  42,      //26,27
+	
+	-1,  -1,    //28,29
+	-1,   -1,    //30,31
+
+	-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, // ... 47
+	-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,// ... 63	
+};
+
+int pinToGpio_LBC_2N[64] =
+{
+	32,  33,      // 0, 1
+	104, 111,      // 2, 3
+	112, 101,      // 4  5
+	105,  102,      // 6, 7
+	103,  95,      // 8, 9
+	96,  147,      //10,11
+	
+	149,  94,      //12,13
+	
+	146,  150,      //14,15
+	148, 108,      //16,17
+	107,  154,      //18,19
+	110,  106,      //20,21
+	109,  116,      //22,23
+	40,  117,      //24,25
+
+	
+	41,  42,      //26,27
+	
+	-1,  -1,    //28,29
+	-1,   -1,    //30,31
+
+	-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, // ... 47
+	-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,// ... 63	
+};
+
 
 int pinToGpio_R1_PLUS[64] =
 {
@@ -1586,6 +1699,63 @@ int physToGpio_CM4[64] =
 	-1, -1, -1, -1, -1, -1, -1,   // ... 63
 };
 
+
+int physToGpio_LBC_Z[64] =//head num map to OrangePi
+{
+	-1,       // 0
+	-1, -1,   // 1, 2
+	32, -1,   // 3, 4
+	33, -1,   // 5, 6
+	34, 85,   // 7, 8
+	-1, 86,   // 9, 10
+	35, 18,   // 11, 12
+	36, -1,   // 13, 14
+	37, 83,   // 15, 16
+	-1, 84,   // 17, 18
+	147, -1,   // 19, 20
+	149, 42,   // 21, 22
+	146, 150,   // 23, 24
+	-1, 43,   // 25, 26
+ 	108, 107,   // 27, 28
+	39, -1,   // 29, 30
+	40, 110,   // 31, 32
+	105, -1,   // 33, 34
+	106, 101,   // 35, 36
+	41, 102,   // 37, 38
+	-1, 103,   // 39, 40
+// Padding:
+  -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,   // ... 56
+  -1, -1, -1, -1, -1, -1, -1,   // ... 63
+};
+
+int physToGpio_LBC_1[64] =//head num map to OrangePi
+{
+	-1,       // 0
+	-1, -1,   // 1, 2
+	32, -1,   // 3, 4
+	33, -1,   // 5, 6
+	36, 111,   // 7, 8
+	-1, 112,   // 9, 10
+	101, 105,   // 11, 12
+	102, -1,   // 13, 14
+	103, 114,   // 15, 16
+	-1, 115,   // 17, 18
+	147, -1,   // 19, 20
+	149, 104,   // 21, 22
+	146, 150,   // 23, 24
+	-1, 148,   // 25, 26
+ 	108, 107,   // 27, 28
+	113, -1,   // 29, 30
+	110, 106,   // 31, 32
+	109, -1,   // 33, 34
+	116, 40,   // 35, 36
+	117, 41,   // 37, 38
+	-1, 42,   // 39, 40
+// Padding:
+  -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,   // ... 56
+  -1, -1, -1, -1, -1, -1, -1,   // ... 63
+};
+
 int physToGpio_LBC_2[64] =//head num map to OrangePi
 {
 	-1,       // 0
@@ -1614,6 +1784,61 @@ int physToGpio_LBC_2[64] =//head num map to OrangePi
   -1, -1, -1, -1, -1, -1, -1,   // ... 63
 };
 
+int physToGpio_LBC_2V[64] =//head num map to OrangePi
+{
+	-1,       // 0
+	-1, -1,   // 1, 2
+	32, -1,   // 3, 4
+	33, -1,   // 5, 6
+	8, 111,   // 7, 8
+	-1, 112,   // 9, 10
+	101, 105,   // 11, 12
+	102, -1,   // 13, 14
+	103, 95,   // 15, 16
+	-1, 96,   // 17, 18
+	147, -1,   // 19, 20
+	149, 2,   // 21, 22
+	146, 150,   // 23, 24
+	-1, 148,   // 25, 26
+ 	108, 107,   // 27, 28
+	154, -1,   // 29, 30
+	110, 106,   // 31, 32
+	109, -1,   // 33, 34
+	116, 40,   // 35, 36
+	117, 41,   // 37, 38
+	-1, 42,   // 39, 40
+// Padding:
+  -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,   // ... 56
+  -1, -1, -1, -1, -1, -1, -1,   // ... 63
+};
+
+int physToGpio_LBC_2N[64] =//head num map to OrangePi
+{
+	-1,       // 0
+	-1, -1,   // 1, 2
+	32, -1,   // 3, 4
+	33, -1,   // 5, 6
+	104, 111,   // 7, 8
+	-1, 112,   // 9, 10
+	101, 105,   // 11, 12
+	102, -1,   // 13, 14
+	103, 95,   // 15, 16
+	-1, 96,   // 17, 18
+	147, -1,   // 19, 20
+	149, 94,   // 21, 22
+	146, 150,   // 23, 24
+	-1, 148,   // 25, 26
+ 	108, 107,   // 27, 28
+	154, -1,   // 29, 30
+	110, 106,   // 31, 32
+	109, -1,   // 33, 34
+	116, 40,   // 35, 36
+	117, 41,   // 37, 38
+	-1, 42,   // 39, 40
+// Padding:
+  -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,   // ... 56
+  -1, -1, -1, -1, -1, -1, -1,   // ... 63
+};
 
 int physToGpio_R1_PLUS[64] =//head num map to OrangePi
 {
@@ -1933,41 +2158,57 @@ void piBoardId (int * model)
 	char *c;
 	char revision[40];
 	unsigned int i = 0;
+	char link_path[128];
+	ssize_t len;
+	int flag=0;
 
-	if ((cpuFd = fopen ("/etc/orangepi-release", "r")) == NULL)
-		if ((cpuFd = fopen ("/etc/armbian-release", "r")) == NULL)
-			piGpioLayoutOops ("Unable to open /etc/orangepi-release or /etc/armbian-release.");
+	if ((cpuFd = fopen ("/etc/orangepi-release", "r")) == NULL){
+		if ((cpuFd = fopen ("/etc/armbian-release", "r")) == NULL){
+			len = readlink("/boot/uEnv/uEnv.txt", link_path, sizeof(link_path));
+			if (len < 0)  
+        		piGpioLayoutOops("Unable to open /etc/orangepi-release or /etc/armbian-release or /boot/uEnv/uEnv.txt. You can reboot your machine ad try it again");
+			flag=1;
+		}
+	}
 
-	while (fgets (line, 40, cpuFd) != NULL)
-	if (strncmp (line, "BOARD=", 6) == 0)
-		break ;
+	if(flag == 0){
+		while (fgets (line, 40, cpuFd) != NULL)
+		if (strncmp (line, "BOARD=", 6) == 0)
+			break ;
 
-	fclose (cpuFd) ;
+		fclose (cpuFd) ;
 
-	if (strncmp (line, "BOARD=", 6) != 0)
-		piGpioLayoutOops ("No \"Revision\" line") ;
+		if (strncmp (line, "BOARD=", 6) != 0)
+			piGpioLayoutOops ("No \"Revision\" line") ;
 
-	if (wiringPiDebug)
-		printf ("piBoardId: Revision string: %s\n", line) ;
+		if (wiringPiDebug)
+			printf ("piBoardId: Revision string: %s\n", line) ;
 
-	// Chomp trailing CR/NL
-	for (c = &line [strlen (line) - 1] ; (*c == '\n') || (*c == '\r') ; --c)
-		*c = 0 ;
+		// Chomp trailing CR/NL
+		for (c = &line [strlen (line) - 1] ; (*c == '\n') || (*c == '\r') ; --c)
+			*c = 0 ;
 
-	// Need to work out if it's using the new or old encoding scheme:
-	// Scan to the first character of the revision number
-	for (c = line ; *c ; ++c)
-    	if (*c == '=')
-      		break ;
+		// Need to work out if it's using the new or old encoding scheme:
+		// Scan to the first character of the revision number
+		for (c = line ; *c ; ++c)
+			if (*c == '=')
+				break ;
 
-	if (*c != '=')
-    	piGpioLayoutOops ("Revision line (no equal)");
+		if (*c != '=')
+			piGpioLayoutOops ("Revision line (no equal)");
 
-	c++;
-	for (i = 0; *c ; ++c)
-		revision[i++] = *c;
+		c++;
+		for (i = 0; *c ; ++c)
+			revision[i++] = *c;
 
-	revision[i] = '.';
+		revision[i] = '.';
+	}
+	else{
+		for (i=0 ; i<len; i++ ){
+			revision[i]=link_path[i];
+		}
+		revision[i] = '.';
+	}
 
 	if (wiringPiDebug)
 		printf ("piBoardId: Board string: %s\n", revision) ;
@@ -2014,7 +2255,13 @@ void piBoardId (int * model)
 	else if (strncmp(revision, "orangepi900.",     	   	   12) == 0) { *model = PI_MODEL_900; }
 	else if (strncmp(revision, "orangepicm4.",                 12) == 0) { *model = PI_MODEL_CM4; }
 	else if (strncmp(revision, "orangepi3b.",                  11) == 0) { *model = PI_MODEL_3B; }
-	else if (strncmp(revision, "lubancat2.",                  10) == 0) { *model = PI_MODEL_LBC2; }
+	else if (strncmp(revision, "uEnvLubanCatZW.txt.",                  19) == 0) { *model = PI_MODEL_LBC_ZW; }
+	else if (strncmp(revision, "uEnvLubanCatZN.txt",                  19) == 0) { *model = PI_MODEL_LBC_ZN; }
+	else if (strncmp(revision, "uEnvLubanCat1.txt.",                  18) == 0) { *model = PI_MODEL_LBC_1; }
+	else if (strncmp(revision, "uEnvLubanCat1N.txt.",                  19) == 0) { *model = PI_MODEL_LBC_1N; }
+	else if (strncmp(revision, "uEnvLubanCat2.txt.",                  18) == 0) { *model = PI_MODEL_LBC_2; }
+	else if (strncmp(revision, "uEnvLubanCat2N.txt.",                  19) == 0) { *model = PI_MODEL_LBC_2N; }
+	else if (strncmp(revision, "uEnvLubanCat4.txt.",                  18) == 0) { *model = PI_MODEL_LBC_4; }
 
 	if (wiringPiDebug)
 		printf("piBoardId: model = %d\n", *model);
@@ -3262,11 +3509,37 @@ int wiringPiSetup (void)
 			physToGpio = physToGpio_CM4;
 			ORANGEPI_PIN_MASK = ORANGEPI_PIN_MASK_CM4;
 			break;
-		case PI_MODEL_LBC2:
+		case PI_MODEL_LBC_ZW:
+			pinToGpio =  pinToGpio_LBC_Z;
+			physToGpio = physToGpio_LBC_Z;
+			ORANGEPI_PIN_MASK = ORANGEPI_PIN_MASK_LBC;
+		break;
+		case PI_MODEL_LBC_ZN:
+			pinToGpio =  pinToGpio_LBC_Z;
+			physToGpio = physToGpio_LBC_Z;
+			ORANGEPI_PIN_MASK = ORANGEPI_PIN_MASK_LBC;
+		break;
+		case PI_MODEL_LBC_1:
+			pinToGpio =  pinToGpio_LBC_1;
+			physToGpio = physToGpio_LBC_1;
+			ORANGEPI_PIN_MASK = ORANGEPI_PIN_MASK_LBC;
+		break;
+		case PI_MODEL_LBC_1N:
+			pinToGpio =  pinToGpio_LBC_1;
+			physToGpio = physToGpio_LBC_1;
+			ORANGEPI_PIN_MASK = ORANGEPI_PIN_MASK_LBC;
+		break;
+		case PI_MODEL_LBC_2:
 			pinToGpio =  pinToGpio_LBC_2;
 			physToGpio = physToGpio_LBC_2;
-			ORANGEPI_PIN_MASK = ORANGEPI_PIN_MASK_LBC_2;
+			ORANGEPI_PIN_MASK = ORANGEPI_PIN_MASK_LBC;
 		break;
+		case PI_MODEL_LBC_2N:
+			pinToGpio =  pinToGpio_LBC_2N;
+			physToGpio = physToGpio_LBC_2N;
+			ORANGEPI_PIN_MASK = ORANGEPI_PIN_MASK_LBC;
+		break;
+
 		default:
 			printf ("Oops - unable to determine board type... model: %d\n", OrangePiModel);
 			break ;
@@ -3419,7 +3692,12 @@ int wiringPiSetup (void)
 
 		case PI_MODEL_CM4:
 		case PI_MODEL_3B:
-		case PI_MODEL_LBC2:
+		case PI_MODEL_LBC_ZW:
+		case PI_MODEL_LBC_ZN:
+		case PI_MODEL_LBC_1:
+		case PI_MODEL_LBC_1N:
+		case PI_MODEL_LBC_2:
+		case PI_MODEL_LBC_2N:
 
 			/* GPIO Register */
 			rk3566_soc_info_t.gpio0_base = (uint32_t *)mmap(0, BLOCK_SIZE, PROT_READ|PROT_WRITE, MAP_SHARED, fd, RK3566_GPIO0_BASE);
@@ -3726,7 +4004,12 @@ unsigned int readR(unsigned int addr)
 
 		case PI_MODEL_CM4:
 		case PI_MODEL_3B:
-		case PI_MODEL_LBC2:
+		case PI_MODEL_LBC_ZW:
+		case PI_MODEL_LBC_ZN:
+		case PI_MODEL_LBC_1:
+		case PI_MODEL_LBC_1N:
+		case PI_MODEL_LBC_2:
+		case PI_MODEL_LBC_2N:
 
 			val = 0;
 
@@ -3860,7 +4143,12 @@ void writeR(unsigned int val, unsigned int addr)
 
 		case PI_MODEL_CM4:
 		case PI_MODEL_3B:
-		case PI_MODEL_LBC2:
+		case PI_MODEL_LBC_ZW:
+		case PI_MODEL_LBC_ZN:
+		case PI_MODEL_LBC_1:
+		case PI_MODEL_LBC_1N:
+		case PI_MODEL_LBC_2:
+		case PI_MODEL_LBC_2N:
 
 			mmap_base = (addr & (~0xfff));
 			mmap_seek = (addr - mmap_base);
@@ -4045,7 +4333,12 @@ int OrangePi_get_gpio_mode(int pin)
 
 		case PI_MODEL_CM4:
 		case PI_MODEL_3B:
-		case PI_MODEL_LBC2:
+		case PI_MODEL_LBC_ZW:
+		case PI_MODEL_LBC_ZN:
+		case PI_MODEL_LBC_1:
+		case PI_MODEL_LBC_1N:
+		case PI_MODEL_LBC_2:
+		case PI_MODEL_LBC_2N:
 
 			if(bank == 0){
 				grf_phyaddr = RK3566_PMU_GRF_BASE + RK3566_PMU_GRF_GPIO0A_IOMUX_L_OFFSET + ((pin >> 2) << 2);
@@ -4389,7 +4682,12 @@ int OrangePi_set_gpio_mode(int pin, int mode)
 
 		case PI_MODEL_CM4:
 		case PI_MODEL_3B:
-		case PI_MODEL_LBC2:
+		case PI_MODEL_LBC_ZW:
+		case PI_MODEL_LBC_ZN:
+		case PI_MODEL_LBC_1:
+		case PI_MODEL_LBC_1N:
+		case PI_MODEL_LBC_2:
+		case PI_MODEL_LBC_2N:
 			if(bank == 0){
 				cru_phyaddr = RK3566_PMU_CRU_BASE + RK3566_PMUCRU_PMUGATE_CON01_OFFSET;
 				cru_val = ~((0x3 << 9) | (0x3 << (16 + 9)));
@@ -4716,7 +5014,12 @@ int OrangePi_digitalWrite(int pin, int value)
 
 		case PI_MODEL_CM4:
 		case PI_MODEL_3B:
-		case PI_MODEL_LBC2:
+		case PI_MODEL_LBC_ZW:
+		case PI_MODEL_LBC_ZN:
+		case PI_MODEL_LBC_1:
+		case PI_MODEL_LBC_1N:
+		case PI_MODEL_LBC_2:
+		case PI_MODEL_LBC_2N:
 
 			if(bank == 0){
 				dr_phyaddr = RK3566_GPIO0_BASE + RK3566_GPIO_SWPORT_DR_L_OFFSET + ((index >> 4) << 2);
@@ -4864,7 +5167,12 @@ int OrangePi_digitalRead(int pin)
 
 		case PI_MODEL_CM4:
 		case PI_MODEL_3B:
-		case PI_MODEL_LBC2:
+		case PI_MODEL_LBC_ZW:
+		case PI_MODEL_LBC_ZN:
+		case PI_MODEL_LBC_1:
+		case PI_MODEL_LBC_1N:
+		case PI_MODEL_LBC_2:
+		case PI_MODEL_LBC_2N:
 
 			if(bank == 0)
 				phyaddr = RK3566_GPIO0_BASE + RK3566_GPIO_EXT_PORT_OFFSET;
@@ -4977,7 +5285,12 @@ void OrangePi_set_gpio_pullUpDnControl (int pin, int pud)
 
 		case PI_MODEL_CM4:
 		case PI_MODEL_3B:
-		case PI_MODEL_LBC2:
+		case PI_MODEL_LBC_ZW:
+		case PI_MODEL_LBC_ZN:
+		case PI_MODEL_LBC_1:
+		case PI_MODEL_LBC_1N:
+		case PI_MODEL_LBC_2:
+		case PI_MODEL_LBC_2N:
 
 			if (bank == 0)
 				phyaddr = RK3566_PMU_GRF_BASE + RK3566_PMU_GRF_GPIO0A_P_OFFSET  + (((pin - 0) >> 3) << 2);
