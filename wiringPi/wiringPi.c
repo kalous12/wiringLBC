@@ -3539,6 +3539,11 @@ int wiringPiSetup (void)
 			physToGpio = physToGpio_LBC_2N;
 			ORANGEPI_PIN_MASK = ORANGEPI_PIN_MASK_LBC;
 		break;
+		case PI_MODEL_LBC_4:
+			pinToGpio =  pinToGpio_LBC_2N;
+			physToGpio = physToGpio_LBC_2N;
+			ORANGEPI_PIN_MASK = ORANGEPI_PIN_MASK_LBC;
+		break;		
 
 		default:
 			printf ("Oops - unable to determine board type... model: %d\n", OrangePiModel);
@@ -3632,7 +3637,7 @@ int wiringPiSetup (void)
 
 			break;
 
-		case PI_MODEL_5: case PI_MODEL_5B: case PI_MODEL_5_PLUS: case PI_MODEL_900:
+		case PI_MODEL_5: case PI_MODEL_5B: case PI_MODEL_5_PLUS: case PI_MODEL_900: case PI_MODEL_LBC_4:
 
 			/* GPIO Register */
 			rk3588_soc_info_t.gpio0_base = (uint32_t *)mmap(0, BLOCK_SIZE, PROT_READ|PROT_WRITE, MAP_SHARED, fd, RK3588_GPIO0_BASE);
@@ -3921,6 +3926,7 @@ unsigned int readR(unsigned int addr)
 		case PI_MODEL_5: case PI_MODEL_5B:
 		case PI_MODEL_5_PLUS:
 		case PI_MODEL_900:
+		case PI_MODEL_LBC_4:
 
 			val = 0;
 
@@ -4070,6 +4076,7 @@ void writeR(unsigned int val, unsigned int addr)
 		case PI_MODEL_5: case PI_MODEL_5B:
 		case PI_MODEL_5_PLUS:
 		case PI_MODEL_900:
+		case PI_MODEL_LBC_4:
 
 			mmap_base = (addr & (~0xfff));
 			mmap_seek = (addr - mmap_base);
@@ -4232,6 +4239,7 @@ int OrangePi_get_gpio_mode(int pin)
 		case PI_MODEL_5: case PI_MODEL_5B:
 		case PI_MODEL_5_PLUS:
 		case PI_MODEL_900:
+		case PI_MODEL_LBC_4:
 
 			rk3588_bus_ioc_phyaddr = RK3588_BUS_IOC_BASE + (0x20 * bank) + ((index >> 2) << 2);
 			if(bank == 0){
@@ -4411,6 +4419,7 @@ int OrangePi_set_gpio_mode(int pin, int mode)
 		case PI_MODEL_5: case PI_MODEL_5B:
 		case PI_MODEL_5_PLUS:
 		case PI_MODEL_900:
+		case PI_MODEL_LBC_4:
 
 			rk3588_bus_ioc_phyaddr = RK3588_BUS_IOC_BASE + (0x20 * bank) + ((index >> 2) << 2);
 			if(bank == 0){
@@ -4853,6 +4862,7 @@ int OrangePi_digitalWrite(int pin, int value)
 		case PI_MODEL_5: case PI_MODEL_5B:
 		case PI_MODEL_5_PLUS:
 		case PI_MODEL_900:
+		case PI_MODEL_LBC_4:
 
 			if(bank == 0){
 				dr_phyaddr = RK3588_GPIO0_BASE + RK3588_GPIO_SWPORT_DR_L_OFFSET + ((index / 16) << 2);
@@ -5130,6 +5140,7 @@ int OrangePi_digitalRead(int pin)
 		case PI_MODEL_5: case PI_MODEL_5B:
 		case PI_MODEL_5_PLUS:
 		case PI_MODEL_900:
+		case PI_MODEL_LBC_4:
 
 			if(bank == 0)
 				phyaddr = RK3588_GPIO0_BASE + RK3588_GPIO_EXT_PORT_OFFSET;
@@ -5225,6 +5236,7 @@ void OrangePi_set_gpio_pullUpDnControl (int pin, int pud)
 		case PI_MODEL_5: case PI_MODEL_5B:
 		case PI_MODEL_5_PLUS:
 		case PI_MODEL_900:
+		case PI_MODEL_LBC_4:
 
 			if(bank == 0 && index < 12)
 				phyaddr = RK3588_PMU1_IOC_BASE + RK3588_PMU1_IOC_GPIO0A_P + ((index >> 3) << 2);

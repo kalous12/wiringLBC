@@ -1572,6 +1572,13 @@ void OrangePiReadAll(int model)
 			alts = alts_rk3588;
 			break;
 
+		case PI_MODEL_LBC_4:
+			printf (" +------+-----+----------+--------+---+   LBC-4  +---+--------+----------+-----+------+\n");
+			physToWpi =  physToWpi_LBC;
+			physNames =  physNames_LBC;
+			alts = alts_rk3588;
+			break;
+
 		default:
 			printf ("Oops - unable to determine board type... model: %d\n", model);
 			break ;
@@ -1598,6 +1605,7 @@ void OrangePiReadAll(int model)
 		case PI_MODEL_LBC_1N:
 		case PI_MODEL_LBC_2:
 		case PI_MODEL_LBC_2N:
+		case PI_MODEL_LBC_4:
 		case PI_MODEL_ZERO_2_W:
 			for (pin = 1 ; pin <= 40; pin += 2)
 				readallPhys(pin);
@@ -1716,7 +1724,9 @@ void OrangePiReadAll(int model)
 		case PI_MODEL_LBC_2N:
 			printf (" +------+-----+----------+--------+---+  LBC-2N  +---+--------+----------+-----+------+\n");
 			break;
-
+		case PI_MODEL_LBC_4:
+			printf (" +------+-----+----------+--------+---+   LBC-4  +---+--------+----------+-----+------+\n");
+			break;
 		default:
 			printf ("Oops - unable to determine board type... model: %d\n", model);
 			break ;

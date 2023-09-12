@@ -402,13 +402,13 @@ static void doI2Cdetect (UNU int argc, char *argv [])
     return ;
   }
 
-#ifndef CONFIG_ORANGEPI
-  if (!moduleLoaded ("i2c_dev"))
-  {
-    fprintf (stderr, "%s: The I2C kernel module(s) are not loaded.\n", argv [0]) ;
-    return ;
-  }
-#endif
+// #ifndef CONFIG_ORANGEPI
+//   if (!moduleLoaded ("i2c_dev"))
+//   {
+//     fprintf (stderr, "%s: The I2C kernel module(s) are not loaded.\n", argv [0]) ;
+//     return ;
+//   }
+// #endif
 
   command = malloc (strlen (c) + 16) ;
   sprintf (command, "%s -y %d", c, port) ;
